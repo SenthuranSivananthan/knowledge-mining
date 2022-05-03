@@ -1,6 +1,6 @@
 param docsContainerName string = 'documents'
 param spnObjectId string
-param deployFunction bool  = false
+param deployFunction bool  = true
 
 var keyVaultName = 'akv-${uniqueString(resourceGroup().id)}'
 var searchName = 'search-${uniqueString(resourceGroup().id)}'
@@ -432,7 +432,7 @@ resource app_services_function_app 'Microsoft.Web/sites@2020-06-01' = if (deploy
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'node'
+          value: 'dotnet'
         }
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'

@@ -124,7 +124,7 @@ namespace CognitiveSearch.UI
             var facets = Model.Facets.Select(f => f.Name).ToList();
             foreach (string f in facets)
             {
-                options.Facets.Add(f);
+                options.Facets.Add(f+",sort:count");
             }
 
             foreach (string h in Model.SearchableFields)
@@ -510,7 +510,7 @@ namespace CognitiveSearch.UI
         {
             List<FacetValue> cleanValues = new List<FacetValue>();
 
-            if (facetResult.Key == "people")
+            if (facetResult.Key == "persons")
             {
                 // only add names that are long enough 
                 foreach (var element in facetResult.Value)

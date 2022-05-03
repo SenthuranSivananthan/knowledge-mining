@@ -2,7 +2,7 @@
       set -x
 
       # Constants
-      SEARCH_SERVICE_APIVERSION="2020-06-30"
+      SEARCH_SERVICE_APIVERSION="2021-04-30-Preview"
 
       # Define variables
       WORKING_DIRECTORY=$1
@@ -13,6 +13,9 @@
       SEARCH_SERVICE_SECRET="$5"
 
       COGNITIVE_SERVICE_SECRET="$6"
+      FUNCTION_NAME="$7"
+      FUNCTION_APICODE="$8"
+      
       
       INDEX_NAME="km"
       INDEXER_NAME="km-indexer"
@@ -48,6 +51,9 @@
       BASE_SKILLS_FILE="${WORKING_DIRECTORY}/base-skills.json"
      
       sed -e "s/__COG_SERVICES_KEY__/${COGNITIVE_SERVICE_SECRET}/g" $BASE_SKILLS_FILE > $SKILLS_FILE
+      sed -i "s/__FUNCTION_NAME__/${FUNCTION_NAME}/g" $SKILLS_FILE 
+      sed -i "s/__FUNCTION_APICODE__/${FUNCTION_APICODE}/g" $SKILLS_FILE 
+
 
       curl --request PUT \
       --url "${SEARCH_SERVICE_ENDPOINT}/skillsets/${SKILLS_NAME}/?api-version=${SEARCH_SERVICE_APIVERSION}" \

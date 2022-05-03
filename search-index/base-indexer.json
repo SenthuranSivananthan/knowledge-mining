@@ -19,24 +19,37 @@
   ],
   "outputFieldMappings": [
     {
-      "sourceFieldName": "/document/merged_text",
-      "targetFieldName": "content"
-    },
-    {
-      "sourceFieldName": "/document/organizations",
+      "sourceFieldName": "/document/merged_content/organizations",
       "targetFieldName": "organizations"
     },
     {
-      "sourceFieldName": "/document/persons",
+      "sourceFieldName": "/document/merged_content/persons",
       "targetFieldName": "persons"
     },
     {
-      "sourceFieldName": "/document/locations",
+      "sourceFieldName": "/document/merged_content/locations",
       "targetFieldName": "locations"
     },
     {
-      "sourceFieldName": "/document/pages/*/keyPhrases/*",
-      "targetFieldName": "keyPhrases"
+      "sourceFieldName": "/document/merged_content/keyphrases",
+      "targetFieldName": "keyphrases"
+    },
+    {
+      "sourceFieldName": "/document/merged_content",
+      "targetFieldName": "merged_content"
+    },
+   
+    {
+      "sourceFieldName": "/document/normalized_images/*/text",
+      "targetFieldName": "text"
+    },
+    {
+      "sourceFieldName": "/document/normalized_images/*/layoutText",
+      "targetFieldName": "layoutText"
+    },
+    {
+      "sourceFieldName": "/document/normalized_images/*/imageTags/*/name",
+      "targetFieldName": "imageTags"
     }
   ],
   "parameters": {

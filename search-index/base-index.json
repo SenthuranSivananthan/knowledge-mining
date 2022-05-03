@@ -3,18 +3,36 @@
       {
         "name": "content",
         "type": "Edm.String",
-        "sortable": false,
-        "searchable": true,
         "filterable": false,
-        "facetable": false
+        "facetable": false,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": false,
+        "analyzer": "standard.lucene"
+      },
+     
+      {
+        "name": "merged_content",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "key": false,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": false,
+        "analyzer": "standard.lucene",
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
       },
       {
-        "name": "keyPhrases",
+        "name": "keyphrases",
         "type": "Collection(Edm.String)",
         "searchable": true,
         "sortable": false,
         "filterable": true,
-        "facetable": true
+        "facetable": false
       },
       {
         "name": "organizations",
@@ -56,6 +74,45 @@
         "sortable": false,
         "filterable": false,
         "facetable": false
+      },
+      {
+        "name": "text",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true,
+        "analyzer": "standard.lucene",
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
+      },
+      {
+        "name": "layoutText",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true,
+        "analyzer": "standard.lucene",
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
+      },
+      {
+        "name": "imageTags",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true,
+        "analyzer": "standard.lucene",
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
       }
     ]
   }

@@ -2,3 +2,8 @@ arm/env.json
 app/.vs/**
 app/CognitiveSearch.UI/bin/**
 app/CognitiveSearch.UI/obj/**
+skills/.vs/**
+skills/*/bin/**
+skills/*/obj/**
+
+**/publish/**

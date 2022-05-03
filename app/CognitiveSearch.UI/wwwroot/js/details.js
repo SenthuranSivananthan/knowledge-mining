@@ -264,17 +264,19 @@ function GetTranscriptHTML(result) {
 
     var full_content = "";
 
-    // If we have merged content, let's use it.
-    if (result.merged_content) {
-        if (result.merged_content.length > 0) {
-            full_content = htmlDecode(result.merged_content.trim());
-        }
-    }
-    else
-    {
+    // If we have merged content, let's use it. 
+    // Elena: We will use content as merged content is filtered
+
+    //if (result.merged_content) {
+      //  if (result.merged_content.length > 0) {
+       //     full_content = htmlDecode(result.merged_content.trim());
+        //}
+    //}
+    //else
+    //{
         // otherwise, let's try getting the content -- although it won't have any image data.
         full_content = result.content.trim();
-    }
+   // }
 
     if (full_content === null || full_content === "")
     {

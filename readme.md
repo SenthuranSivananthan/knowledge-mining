@@ -129,32 +129,61 @@ All you need to do is push/merge changes into `app`, `arm` and `search-index` fo
 
 ## Manual deployment
 
-- git clone repo
+Could be done fully in an Azure Cloud Shell (Bash)
+
+- git clone this repo
 
 - build Infra
 
-  -- Create App Registrayion and save ObjectID
+  -- Verify Subscription
+  ```
+  az account set -s "<subscription name>"
+  ```
+  -- [Optional] Create App Registration and note ObjectID, you could also use your current user Identity
+  
+  ```
+  az ad user list --upn <user email>
+  ``` 
 
   -- Create Resource Group and grant Contributor access to App Registration
-
-  -- Run Bicep Deployment
+ ```
+ az group create -l "Canada Central" -n <RG NAME>
+  ```
+ 
+  -- Run Bicep Deployment to provision Infrastructure
 
 ```
-cd arm
-az deployment group create -g <RG NAME> --template-file env-vnet-integration.bicep --parameters docsContainerName=documents spnObjectId=<SPN OBJID>
+cd ~/knowledge-mining/arm
+az deployment group create -g <RG NAME> --template-file env-vnet-integration.bicep --parameters docsContainerName=documents spnObjectId=<objectID-of-you-or-appregistration>
 ```
 
-- build Search Index
+- Build and Deploy Custom Email Filtering Skill
+
 ```
-cd search-index
+cd ~/knowledge-mining/skills
+chmod +x builddeploy.sh
+./builddeploy.sh <RG NAME> <FUNCTION NAME>
+
+```
+
+- build Search Configuration (index, indexer, skillset)
+```
+cd ~/knowledge-mining/search-index
 chmod +x deploy.sh
-./deploy.sh ~/knowledge-mining/search-index/ <STORAGE RESID>  documents <SEARCH ENDPOINT> <SEARCH KEY> <COG SERVICE KEY>
+./deploy.sh ~/knowledge-mining/search-index <STORAGE RESID>  documents <SEARCH ENDPOINT> <SEARCH KEY> <COG SERVICE KEY> <FUNCTION APPNAME> <FUNCTION CODE>
 ```
-Note: parameters could be copied from deployment output and keyvault secrets
 
-- Deploy App
+Example:
 ```
-cd app
+./deploy.sh ~/knowledge-mining/search-index /subscriptions/xxxxx/resourceGroups/gackm/providers/Microsoft.Storage/storageAccounts/storageaccount  documents https://search-xxxxx.search.windows.net DDXXXXX b97a864ccc3a4xxxx  function-app-zzzz Axxxxx==
+```
+
+Note: parameters could be copied from deployment output and keyvault secrets and Funcion itself
+
+
+- Build and Deploy Search Application to App Service
+```
+cd ~/knowledge-mining/app
 chmod +x builddeploy.sh
 ./builddeploy.sh <RG NAME> <APPSVC NAME>
 
